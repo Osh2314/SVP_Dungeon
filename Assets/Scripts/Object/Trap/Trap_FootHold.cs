@@ -22,6 +22,7 @@ public class Trap_FootHold : MonoBehaviour
         {
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
             enemy.StartCoroutine(enemy.State_Dead());
+            Destroy(gameObject);
         }
     }
 }

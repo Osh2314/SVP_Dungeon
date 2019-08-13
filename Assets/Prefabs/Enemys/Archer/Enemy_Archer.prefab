@@ -227,10 +227,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 761b641ac581d9547a19eed565465909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 3
   spinforce: 10000
+  dropGoldValue: 10
   state: 0
   Arrow: {fileID: 5974642675958902613, guid: 45db9db78568d08458582970623d6923, type: 3}
+  arrowspeed: 1500
+  atkpoint: 0
 --- !u!61 &6300506671468012668
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -241,7 +244,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
