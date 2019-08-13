@@ -8,14 +8,12 @@ public class Enemy_Archer : Enemy
     public float arrowspeed;
 
     Enemy_Archer_Arrow arrow;
-    private Rigidbody2D rigid;
     private Vector3 playerPos;
     public int atkpoint = 0;
 
     // Start is called before the first frame update
     new void Start()
     {
-        rigid = GetComponent<Rigidbody2D>();
         arrow = GetComponent<Enemy_Archer_Arrow>();
         base.Start();
 
@@ -40,7 +38,7 @@ public class Enemy_Archer : Enemy
             }
             GameObject createdObject;
             Rigidbody2D createdRigid;
-            Vector2 lookDir = playerPos - rigid.transform.position;
+            Vector2 lookDir = playerPos - transform.position;
             lookDir.Normalize();
             createdObject = Instantiate(Arrow, new Vector3(transform.position.x + 0.3f, transform.position.y, transform.position.z), Quaternion.FromToRotation(Vector3.right, lookDir));
             createdRigid = createdObject.GetComponent<Rigidbody2D>();

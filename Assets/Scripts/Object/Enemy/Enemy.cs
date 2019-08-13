@@ -10,7 +10,7 @@ public abstract class Enemy : MonoBehaviour
     public enum State { IDLE, MOVE, STUN, ATTACK, DEAD};
     public State state = State.IDLE;
 
-    private Rigidbody2D rigid;
+    protected Rigidbody2D rigid;
     
     // Start is called before the first frame update
     protected void Start()
