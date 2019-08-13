@@ -10,8 +10,11 @@ public abstract class Enemy : MonoBehaviour
     public enum State { IDLE, MOVE, STUN, ATTACK, DEAD};
     public State state = State.IDLE;
 
+
     protected Rigidbody2D rigid;
-    
+
+
+    protected Vector3 playerPos;
     // Start is called before the first frame update
     protected void Start()
     {
@@ -24,6 +27,11 @@ public abstract class Enemy : MonoBehaviour
     {
        
         
+    }
+
+    public void GetPlayerPosition(Vector3 pos)
+    {
+        playerPos = pos;
     }
 
     public IEnumerator State_Idle() {

@@ -8,7 +8,6 @@ public class Enemy_Archer : Enemy
     public float arrowspeed;
 
     Enemy_Archer_Arrow arrow;
-    private Vector3 playerPos;
     public int atkpoint = 0;
 
     // Start is called before the first frame update
@@ -49,9 +48,5 @@ public class Enemy_Archer : Enemy
         yield break;
     }
 
-    public void GetPlayerPosition(Vector3 pos)
-    {
-        playerPos = pos;
-    }
 
 }

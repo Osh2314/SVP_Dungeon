@@ -7,12 +7,10 @@ public class EnemyRange : MonoBehaviour
     public GameObject Enemy;
 
     Enemy enemy;
-    Enemy_Archer eA;
     // Start is called before the first frame update
     void Start()
     {
         enemy = GetComponentInParent<Enemy>();
-        eA = GetComponentInParent<Enemy_Archer>();
     }
 
     // Update is called once per frame
@@ -29,13 +27,13 @@ public class EnemyRange : MonoBehaviour
             if (collision.gameObject.tag == "Player")
             {
                 Vector3 colPos = collision.gameObject.transform.position;
-                eA.GetPlayerPosition(colPos);
+                enemy.GetPlayerPosition(colPos);
                 enemy.StartCoroutine(enemy.State_Attack());
             }
             else if(collision.gameObject.tag == "Core")
             {
                 Vector3 colPos = collision.gameObject.transform.position;
-                eA.GetPlayerPosition(colPos);
+                enemy.GetPlayerPosition(colPos);
                 enemy.StartCoroutine(enemy.State_Attack());
             }
 
