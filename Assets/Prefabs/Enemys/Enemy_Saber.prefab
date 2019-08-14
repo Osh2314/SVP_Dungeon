@@ -119,6 +119,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  spinforce: 10000
+  dropGoldValue: 10
   state: 0
   sword: {fileID: 3719639794423114151}
   attackAngle: 500
