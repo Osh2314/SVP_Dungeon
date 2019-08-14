@@ -9,6 +9,12 @@ public class UIManager : MonoBehaviour
     public Slider slider_PlayerHp;
     public Slider slider_CoreHp;
     public Text text_GoldValue;
+    public Text text_RoundNotify;
+    public Button button_ONObjectShop;
+    public Button button_OFFObjectShop;
+    public GameObject panel_ObjectShop;
+    public GameObject panel_GameClear;
+    public GameObject panel_GameOver;
 
     public Text text_SelectObjNameValue;
     public Text text_SelectObjPriceValue;
@@ -45,10 +51,6 @@ public class UIManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
     }
-    void Start()
-    {
-        
-    }
 
     //메인화면에서 쓸 함수들*****************************************
     public void SetSaveFileNum(int value=0)
@@ -71,26 +73,23 @@ public class UIManager : MonoBehaviour
     }
     //***************************************************************
     //플레이 화면에서 쓰일 함수들**************************************
-    public void GameStart()
+    public void MainPanel_GameStartBtn() {
+
+        GameManager.Instance.MainPanel_GameStartBtn();
+    }
+    public void PlayPanel_GameStartBtn()
     {
-        LoadSaveData();
-        GameManager.Instance.isGamePlaying = true;
-
-        //씬 변경 함수를 이 함수에 삽입해야한다
+        GameManager.Instance.PlayPanel_GameStartBtn();
     }
-
-    void LoadSaveData() {
-        //nowSaveFileSelectNum
-    }
-    public void GamePause()
-    {
-        Time.timeScale = 0;
-    }
-
     public void OnGoldChanged()
     {
         text_GoldValue.text = GameManager.Instance.Gold.ToString();
     }
+
+    public void Btn_GameReStart() {
+        GameManager.Instance.GameReset();
+    }
+
     public void SetSelectObjInfo(GameObject selectObj, string selectObjName, int selectObjPrice,
         string selectObjToolTip) {
         //선택오브젝트 정보 구조체를 업데이트한다.
@@ -104,6 +103,41 @@ public class UIManager : MonoBehaviour
         text_SelectObjPriceValue.text = selectObjPrice.ToString();
         image_ObjectSprite.sprite = selectObj.GetComponent<SpriteRenderer>().sprite;
         text_ObjToolTipValue.text = selectObjToolTip;
-}
+    }
+
+    /// <summary>
+    /// 해당 targetUIText의 text를 str변수의 값으로 바꾸고 시간 변수에 따라 targetUIText가 보이지 않게된다
+    /// </summary>
+    /// <param name="targetUIText"></param>
+    /// <param name="str"></param>
+    /// <param name="appearDuration"></param>
+    /// <param name="fadeDuration"></param>
+    /// <returns></returns>
+    public IEnumerator TargetTextFadeOutWithTime(Text targetUIText,string str, float appearDuration,float fadeOutDuration)
+    {
+        targetUIText.text = str;
+        targetUIText.color = new Color(targetUIText.color.r, targetUIText.color.g, targetUIText.color.b, 1);
+        yield return new WaitForSeconds(appearDuration);
+
+        Color fadecolor = targetUIText.color;
+        float time = 0f;
+        //알파값
+        fadecolor.a = Mathf.Lerp(1, 0, time);
+
+        while (fadecolor.a > 0f)
+        {
+
+            time += Time.deltaTime / fadeOutDuration;
+
+            fadecolor.a = Mathf.Lerp(1, 0, time);
+
+            targetUIText.color = fadecolor;
+
+            yield return null;
+
+        }
+
+        yield break;
+    }
     //***************************************************************
 }

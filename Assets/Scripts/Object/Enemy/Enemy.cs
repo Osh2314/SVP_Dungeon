@@ -10,10 +10,7 @@ public abstract class Enemy : MonoBehaviour
     public enum State { IDLE, MOVE, STUN, ATTACK, DEAD};
     public State state = State.IDLE;
 
-
     protected Rigidbody2D rigid;
-
-
     protected Vector3 playerPos;
     // Start is called before the first frame update
     protected void Start()
@@ -41,7 +38,7 @@ public abstract class Enemy : MonoBehaviour
 
         while (state == State.IDLE) {
             //플레이어
-            if (GameManager.Instance.isGamePlaying == true) {
+            if (GameManager.Instance.gameState == GameManager.GameState.ROUNDPLAYING) {
                 StartCoroutine(State_Move());
                 yield break;
             }
@@ -61,7 +58,7 @@ public abstract class Enemy : MonoBehaviour
         while (state == State.MOVE)
         {
             //플레이어
-            if (GameManager.Instance.isGamePlaying == true)
+            if (GameManager.Instance.gameState == GameManager.GameState.ROUNDPLAYING)
             {
                 transform.Translate(new Vector3((dir*speed * Time.deltaTime).x, 0, 0));
                 //if()
@@ -79,6 +76,8 @@ public abstract class Enemy : MonoBehaviour
 
     public IEnumerator State_Dead()
     {
+        state = State.DEAD;
+
         rigid.constraints = RigidbodyConstraints2D.None;
         rigid.AddForce(new Vector3(-500, 600, spinforce));
 
@@ -91,6 +90,8 @@ public abstract class Enemy : MonoBehaviour
         }
         GameManager.Instance.Gold += dropGoldValue;
         Destroy(gameObject);
+        //EnemySponwer의 nowDeadEnemyCount변수는 라운드 종료조건에 사용된다.
+        GameManager.Instance.nowDeadEnemyCount += 1;
         yield break;
     }
 

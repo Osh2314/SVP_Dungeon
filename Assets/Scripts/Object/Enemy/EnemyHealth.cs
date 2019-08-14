@@ -40,6 +40,6 @@ public class EnemyHealth : MonoBehaviour
 
     private void event_Death()
     {
-        Destroy(gameObject);
+        StartCoroutine(GetComponent<Enemy>().State_Dead());
     }
 }

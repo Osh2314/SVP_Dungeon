@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public enum STATE { IDLE, MOVE, STOP, ATTACK, DEAD };
     public STATE state = STATE.IDLE;
 
-
+    public int maxHp = 30;
     public int Hp
     {
         get
@@ -30,8 +30,8 @@ public class Player : MonoBehaviour
         }
     }
 
-    private int hp = 10;
-    public bool isInstallMode = false;
+    private int hp;
+    private bool isInstallMode = false;
     
     //마우스를 따라다닐 sprite컴포넌트가 있는 오브젝트
     private GameObject mouseFollowObj;
@@ -40,10 +40,11 @@ public class Player : MonoBehaviour
     private float jumpForce;
     
     private Rigidbody2D rigid;
-    
+    private Vector3 spownPos;
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
+        Respown();
         UIManager.Instance.slider_PlayerHp.maxValue = hp;
         UIManager.Instance.slider_PlayerHp.value = hp;
         StartCoroutine(STATE_IDLE());
@@ -51,10 +52,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance.isGamePlaying == false)
-        {
-            return;
-        }
+
         float h = Input.GetAxis("Horizontal");
        
         transform.position += new Vector3(h * speed * Time.deltaTime, 0, 0);
@@ -120,7 +118,7 @@ public class Player : MonoBehaviour
         while (state == STATE.IDLE)
         {
             //플레이어
-            if (GameManager.Instance.isGamePlaying == true)
+            if (GameManager.Instance.gameState == GameManager.GameState.ROUNDPLAYING)
             {
                 StartCoroutine(STATE_MOVE());
                 yield break;
@@ -139,7 +137,7 @@ public class Player : MonoBehaviour
         while (state == STATE.MOVE)
         {
             //플레이어
-            if (GameManager.Instance.isGamePlaying == true)
+            if (GameManager.Instance.gameState == GameManager.GameState.ROUNDPLAYING)
             {
             }
             //   Debug.Log(Time.realtimeSinceStartup + " || " + "현재 MOVE상태");
@@ -176,6 +174,14 @@ public class Player : MonoBehaviour
     }
     private void event_Death()
     {
+        UIManager.Instance.panel_GameOver.SetActive(true);
+        Time.timeScale = 0;
         Destroy(gameObject);
+
+    }
+
+    public void Respown() {
+        transform.position=spownPos;
+        Hp = maxHp;
     }
 }
