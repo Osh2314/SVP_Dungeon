@@ -444,8 +444,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!60 &1595329962
-PolygonCollider2D:
+--- !u!70 &1595329962
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -457,50 +457,9 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5, y: 1.5}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.19999999, y: -0.29999998}
-      - {x: 0.26999998, y: -0.25}
-      - {x: 0.28, y: -0.14}
-      - {x: 0.19, y: -0.03}
-      - {x: 0.25, y: -0.02}
-      - {x: 0.37, y: 0.03}
-      - {x: 0.42, y: 0.08}
-      - {x: 0.48999998, y: 0.22}
-      - {x: 0.52, y: 0.31}
-      - {x: 0.56, y: 0.35}
-      - {x: 0.56, y: 0.42}
-      - {x: 0.42999998, y: 0.48999998}
-      - {x: 0.26999998, y: 0.59}
-      - {x: 0.14999999, y: 0.59}
-      - {x: 0.13, y: 0.58}
-      - {x: 0, y: 0.56}
-      - {x: -0.17999999, y: 0.52}
-      - {x: -0.31, y: 0.41}
-      - {x: -0.34, y: 0.17}
-      - {x: -0.26999998, y: -0.089999996}
-      - {x: -0.35, y: -0.16}
-      - {x: -0.35, y: -0.24}
-      - {x: -0.34, y: -0.28}
-      - {x: -0.22999999, y: -0.26}
-      - {x: -0.25, y: -0.42999998}
-      - {x: -0.21, y: -0.44}
-      - {x: -0.12, y: -0.44}
-      - {x: -0.099999994, y: -0.39999998}
-      - {x: 0.08, y: -0.44}
-      - {x: 0.17, y: -0.44}
-    - - {x: 0.12, y: -0.14}
-      - {x: 0.12, y: -0.14999999}
+  m_Offset: {x: 0.01, y: 0.08}
+  m_Size: {x: 0.6, y: 1.05}
+  m_Direction: 0
 --- !u!50 &1595329963
 Rigidbody2D:
   serializedVersion: 4
@@ -520,7 +479,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!212 &1595329964
 SpriteRenderer:
@@ -1024,7 +983,7 @@ MonoBehaviour:
   nowDeadEnemyCount: 0
   roundChangeIntervalTime: 10
   gameState: 0
-  goldStartValue: 50
+  goldStartValue: 99099
 --- !u!1001 &2022050986173934961
 PrefabInstance:
   m_ObjectHideFlags: 0

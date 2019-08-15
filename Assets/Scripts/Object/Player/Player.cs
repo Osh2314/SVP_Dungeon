@@ -32,13 +32,13 @@ public class Player : MonoBehaviour
 
     private int hp;
     private bool isInstallMode = false;
-    
+
     //마우스를 따라다닐 sprite컴포넌트가 있는 오브젝트
     private GameObject mouseFollowObj;
     //현재 셀렉중인 블록의 가격
     private bool isSeeRight = true;
     private float jumpForce;
-    
+
     private Rigidbody2D rigid;
     private Vector3 spownPos;
     void Start()
@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
     {
 
         float h = Input.GetAxis("Horizontal");
-       
+
         transform.position += new Vector3(h * speed * Time.deltaTime, 0, 0);
 
 
@@ -63,12 +63,12 @@ public class Player : MonoBehaviour
             rigid.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             cJump = false;
         }
-        if (h >0) // 1이 오른쪽 -1이 왼쪽
+        if (h > 0) // 1이 오른쪽 -1이 왼쪽
         {
             isSeeRight = true;
             transform.localEulerAngles = new Vector3(0, 180, 0);
         }
-        if(h<0)
+        if (h < 0)
         {
             isSeeRight = false;
             transform.localEulerAngles = new Vector3(0, 0, 0);
@@ -81,7 +81,6 @@ public class Player : MonoBehaviour
             {
                 //설치를 구현하는 함수
                 tryInstallObj();
-
             }
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
@@ -90,8 +89,10 @@ public class Player : MonoBehaviour
         }
     }
 
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
         if (collision.gameObject.tag == "Platform")
         {
             cJump = true;
@@ -100,7 +101,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Floor")
         {
             cJump = true;
-            jumpForce = origin_JumpForce * 2;
+            jumpForce = origin_JumpForce * 1.5f;
         }
     }
 
@@ -163,15 +164,17 @@ public class Player : MonoBehaviour
     }
 
     private void tryInstallObj() {
-        if (mouseFollowObj.GetComponent<InstallObj_Rendering>().canInstall &&
-            GameManager.Instance.Gold - UIManager.Instance.nowSelectObjInfo.nowSelectObjPrice>=0)
+        if (mouseFollowObj.GetComponent<InstallObj_Rendering>().canInstall==true &&
+            GameManager.Instance.Gold - UIManager.Instance.nowSelectObjInfo.nowSelectObjPrice >= 0)
         {
             GameManager.Instance.Gold -= UIManager.Instance.nowSelectObjInfo.nowSelectObjPrice;
             GameObject installedObj = Instantiate(mouseFollowObj, mouseFollowObj.transform.position, Quaternion.identity);
             Destroy(installedObj.GetComponent<InstallObj_Rendering>());
             installedObj.transform.parent = GameManager.Instance.platformData.transform;
         }
+
     }
+
     private void event_Death()
     {
         UIManager.Instance.panel_GameOver.SetActive(true);
@@ -181,7 +184,7 @@ public class Player : MonoBehaviour
     }
 
     public void Respown() {
-        transform.position=spownPos;
+        transform.position = spownPos;
         Hp = maxHp;
     }
 }

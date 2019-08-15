@@ -40,4 +40,6 @@ public class InstallObj_Rendering : MonoBehaviour
         GetComponent<Collider2D>().isTrigger = false;
         Destroy(GetComponent<Rigidbody2D>());
     }
+
+   
 }
