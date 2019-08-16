@@ -13,7 +13,10 @@ public class Core : MonoBehaviour
         }
         set
         {
-            hp = value;
+            if(hp<value){
+	   StartCoroutine(Camera.main.GetComponent<CameraShake>().cameraVibration(3f));
+	   Debug.Log("코어 피격에 의한 카메라 진동");
+	}
             UIManager.Instance.slider_CoreHp.value = hp;
             if (Hp <= 0)
             {

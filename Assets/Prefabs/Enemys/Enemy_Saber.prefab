@@ -413,6 +413,9 @@ MonoBehaviour:
   damage: 5
   canAttack: 0
   willInvisibleDestroy: 0
+  willSuccessAttackDestroy: 0
+  timeDuration: 0
+  time: 0
 --- !u!70 &3719639794423114147
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

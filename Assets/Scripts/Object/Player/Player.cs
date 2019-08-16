@@ -20,6 +20,11 @@ public class Player : MonoBehaviour
         }
         set
         {
+	if(hp<value){
+	   StartCoroutine(Camera.main.GetComponent<CameraShake>().cameraVibration(3f));
+	   Debug.Log("플레이어에 피격에 의한 카메라 진동");
+	}
+
             hp = value;
             UIManager.Instance.slider_PlayerHp.value = hp;
             if (Hp <= 0)
@@ -30,7 +35,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private int hp;
+    private int hp=99999;
     private bool isInstallMode = false;
 
     //마우스를 따라다닐 sprite컴포넌트가 있는 오브젝트
@@ -44,6 +49,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
+        spownPos=transform.position;
         Respown();
         UIManager.Instance.slider_PlayerHp.maxValue = hp;
         UIManager.Instance.slider_PlayerHp.value = hp;

@@ -1319,6 +1319,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySpowner
       objectReference: {fileID: 0}
+    - target: {fileID: 7017542630098743123, guid: dad583048d868134f953b936367af418,
+        type: 3}
+      propertyPath: roundEnemyInfo.Array.data[0].spownEnemyPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 6300506671468012642, guid: bf1b8ee817d2263468f6e2c3d53b9aa2,
+        type: 3}
+    - target: {fileID: 7017542630098743123, guid: dad583048d868134f953b936367af418,
+        type: 3}
+      propertyPath: roundEnemyInfo.Array.data[0].spownEnemyPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 6300506671468012642, guid: bf1b8ee817d2263468f6e2c3d53b9aa2,
+        type: 3}
     - target: {fileID: 7017542630098743116, guid: dad583048d868134f953b936367af418,
         type: 3}
       propertyPath: m_LocalPosition.x

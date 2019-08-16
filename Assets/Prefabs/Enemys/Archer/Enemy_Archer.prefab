@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1530645738969443248}
   - component: {fileID: 7278749751126962133}
   - component: {fileID: 406865293134244926}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy_range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 6925631432949313441}
   - component: {fileID: 6300506671468012668}
   - component: {fileID: 6300506671468012669}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy_Archer
   m_TagString: Enemy
   m_Icon: {fileID: 0}
