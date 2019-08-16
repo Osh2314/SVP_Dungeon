@@ -13,8 +13,7 @@ public class ObjectShop_ObjectBtn : MonoBehaviour
     public string objToolTip = "";
 
     public void SelectObject() {
-        Player player = GameManager.Instance.player.GetComponent<Player>();
-        player.setTrueInstallMode(obj);
+        StartCoroutine(GameManager.Instance.mouseCursor.State_Install(obj));
 
         UIManager.Instance.SetSelectObjInfo(obj, objName, objPrice, objToolTip);
 

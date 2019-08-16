@@ -201,7 +201,7 @@ MonoBehaviour:
   origin_JumpForce: 5
   cJump: 1
   state: 0
-  isInstallMode: 0
+  maxHp: 30
 --- !u!114 &1304807768106280769
 MonoBehaviour:
   m_ObjectHideFlags: 0

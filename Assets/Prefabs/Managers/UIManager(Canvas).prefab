@@ -3687,7 +3687,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1652963551}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &1791335644
@@ -7750,7 +7761,7 @@ Canvas:
   m_GameObject: {fileID: 569551658718798109}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -7823,6 +7834,7 @@ MonoBehaviour:
   panel_ObjectShop: {fileID: 569551658235140580}
   panel_GameClear: {fileID: 255946918}
   panel_GameOver: {fileID: 1257514500}
+  button_Play_GameStart: {fileID: 1475158622}
   text_SelectObjNameValue: {fileID: 3900483914783479400}
   text_SelectObjPriceValue: {fileID: 1707655634915461891}
   image_ObjectSprite: {fileID: 7082968685712418275}

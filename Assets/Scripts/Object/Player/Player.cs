@@ -20,10 +20,10 @@ public class Player : MonoBehaviour
         }
         set
         {
-	/*if(hp<value){
-	   StartCoroutine(Camera.main.GetComponent<CameraShake>().cameraVibration(3f));
-	   Debug.Log("플레이어에 피격에 의한 카메라 진동");
-	}*/
+	        if(hp>value){
+                StartCoroutine(Camera.main.GetComponent<CameraShake>().CameraVibration(0.3f, 3f, 1f));
+	         Debug.Log("플레이어 피격에 의한 카메라 진동");
+	        }
 
             hp = value;
             UIManager.Instance.slider_PlayerHp.value = hp;
@@ -35,17 +35,15 @@ public class Player : MonoBehaviour
         }
     }
 
-    private int hp=99999;
-    private bool isInstallMode = false;
+    private int hp=30;
 
-    //마우스를 따라다닐 sprite컴포넌트가 있는 오브젝트
-    private GameObject mouseFollowObj;
     //현재 셀렉중인 블록의 가격
     private bool isSeeRight = true;
     private float jumpForce;
 
     private Rigidbody2D rigid;
     private Vector3 spownPos;
+
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -54,6 +52,7 @@ public class Player : MonoBehaviour
         UIManager.Instance.slider_PlayerHp.maxValue = hp;
         UIManager.Instance.slider_PlayerHp.value = hp;
         StartCoroutine(STATE_IDLE());
+        
     }
 
     void Update()
@@ -79,18 +78,17 @@ public class Player : MonoBehaviour
             isSeeRight = false;
             transform.localEulerAngles = new Vector3(0, 0, 0);
         }
-        if (isInstallMode == true)
+
+        if (GameManager.Instance.mouseCursor.state == Cursor.State.Install)
         {
-            Vector3 mouseConvertedpoint = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
-            mouseFollowObj.transform.position = mouseConvertedpoint;
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 //설치를 구현하는 함수
-                tryInstallObj();
+                GameManager.Instance.mouseCursor.tryInstallObj();
             }
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
-                setFalseInstallMode();
+                StartCoroutine(GameManager.Instance.mouseCursor.State_Idle());
             }
         }
     }
@@ -115,6 +113,8 @@ public class Player : MonoBehaviour
     {
         return isSeeRight;
     }
+
+    
 
     IEnumerator STATE_IDLE()
     {
@@ -169,33 +169,7 @@ public class Player : MonoBehaviour
         yield break;
     }
 
-    public void setTrueInstallMode(GameObject objInfo) {
-        isInstallMode = true;
-        mouseFollowObj = Instantiate(objInfo, new Vector3(), Quaternion.identity);
-        if (mouseFollowObj.GetComponent<InstallObj_Rendering>() == null)
-        {
-            Debug.Log("Add" + Time.time);
-            mouseFollowObj.AddComponent<InstallObj_Rendering>();
-        }
-        mouseFollowObj.SetActive(true);
-    }
-    public void setFalseInstallMode()
-    {
-        isInstallMode = false;
-        Destroy(mouseFollowObj);
-    }
-
-    private void tryInstallObj() {
-        if (mouseFollowObj.GetComponent<InstallObj_Rendering>().canInstall==true &&
-            GameManager.Instance.Gold - UIManager.Instance.nowSelectObjInfo.nowSelectObjPrice >= 0)
-        {
-            GameManager.Instance.Gold -= UIManager.Instance.nowSelectObjInfo.nowSelectObjPrice;
-            GameObject installedObj = Instantiate(mouseFollowObj, mouseFollowObj.transform.position, Quaternion.identity);
-            Destroy(installedObj.GetComponent<InstallObj_Rendering>());
-            installedObj.transform.parent = GameManager.Instance.platformData.transform;
-        }
-
-    }
+   
 
     private void event_Death()
     {

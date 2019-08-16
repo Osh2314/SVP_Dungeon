@@ -124,8 +124,8 @@ MonoBehaviour:
   spownIntervalTime: 2.5
   roundEnemyInfo:
   - spownEnemyPrefabs:
-    - {fileID: 3719639792561802695, guid: e0453fb9721946b49af5dbfc3e272912, type: 3}
-    - {fileID: 3719639792561802695, guid: e0453fb9721946b49af5dbfc3e272912, type: 3}
+    - {fileID: 6300506671468012642, guid: bf1b8ee817d2263468f6e2c3d53b9aa2, type: 3}
+    - {fileID: 6300506671468012642, guid: bf1b8ee817d2263468f6e2c3d53b9aa2, type: 3}
     - {fileID: 3719639792561802695, guid: e0453fb9721946b49af5dbfc3e272912, type: 3}
   - spownEnemyPrefabs:
     - {fileID: 6300506671468012642, guid: bf1b8ee817d2263468f6e2c3d53b9aa2, type: 3}

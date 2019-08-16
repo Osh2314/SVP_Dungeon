@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
     public GameObject panel_ObjectShop;
     public GameObject panel_GameClear;
     public GameObject panel_GameOver;
-
+    public Button button_Play_GameStart;
     public Text text_SelectObjNameValue;
     public Text text_SelectObjPriceValue;
     public Image image_ObjectSprite;

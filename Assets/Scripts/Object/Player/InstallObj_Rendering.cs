@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InstallObj_Rendering : MonoBehaviour
 {
-    public bool canInstall = true;
+    
     private void Start()
     {
         GetComponent<Collider2D>().isTrigger = true;
@@ -18,23 +18,24 @@ public class InstallObj_Rendering : MonoBehaviour
         
     }
 
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        Debug.Log(other.gameObject.name + " : touched!!!");
-        if (other.gameObject.tag == "Platform" || other.gameObject.tag == "Floor"
-            || other.gameObject.tag == "Player") {
-            GetComponent<SpriteRenderer>().color = new Color(255, 0,0);
-            canInstall = false;
-        }
-            
-    }
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if(other.gameObject.tag == "Platform" || other.gameObject.tag == "Floor"
-            || other.gameObject.tag == "Player")
-            GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
-        canInstall = true;
-    }
+    //private void OnTriggerStay2D(Collider2D other)
+    //{
+    //    Debug.Log(other.gameObject.name + " : touched!!!");
+    //    if (other.gameObject.tag == "Platform" || other.gameObject.tag == "Floor"
+    //        || other.gameObject.tag == "Player")
+    //    {
+    //        GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
+    //        canInstall = false;
+    //    }
+
+    //}
+    //private void OnTriggerExit2D(Collider2D other)
+    //{
+    //    if(other.gameObject.tag == "Platform" || other.gameObject.tag == "Floor"
+    //        || other.gameObject.tag == "Player")
+    //        GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+    //    canInstall = true;
+    //}
     private void OnDestroy()
     {
         GetComponent<Collider2D>().isTrigger = false;

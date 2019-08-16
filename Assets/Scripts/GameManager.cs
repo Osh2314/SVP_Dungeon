@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public Core core;//게임 승리조건인 코어는 게임매니저의 역할이라고 생각되어 따로 빼주었다.
+    public GameObject playerPrefab;
     public Player player;
+    public Cursor mouseCursor;
+    public Vector3 playerSpownPos=new Vector3(0, -3.2f, 0);
     //세이브에 쓰이는 변수
     public GameObject platformData;
     //라운드 시스템 구현에 쓰이는 변수
@@ -47,8 +51,6 @@ public class GameManager : MonoBehaviour
     private static GameManager instance;
     private bool canPausePanelActive = true;
 
-    //디버그용이다. 삭제예정
-    //public bool isGamePlaying=false;
 
     //**************************************************************
     private void Awake()
@@ -61,10 +63,17 @@ public class GameManager : MonoBehaviour
         instance = this;
 
         DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
-
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+        if (GameObject.FindGameObjectWithTag("Player") == null)
+            player = Instantiate(playerPrefab, playerSpownPos, Quaternion.identity).GetComponent<Player>();
+        else
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+    }
     private void Start()
     {
+        //메인화면에서 생성된 플레이어가 움직이지 못하게 한다.
         Time.timeScale = 0;
     }
     private void Update()
@@ -76,16 +85,16 @@ public class GameManager : MonoBehaviour
     }
 
     public void MainPanel_GameStartBtn() {
+
+        SceneManager.LoadScene("01_GamePlaying", LoadSceneMode.Single);
         GameReset();
         loadSaveData();
-
-
     }
     public void PlayPanel_GameStartBtn() {
         gameState = GameState.ROUNDPLAYING;
-        
-        //씬 변경 함수를 이 함수에 삽입해야한다
 
+        //씬 변경 함수를 이 함수에 삽입해야한다
+        
         StartCoroutine(DefenseStart());
     }
     IEnumerator DefenseStart() {
@@ -93,7 +102,7 @@ public class GameManager : MonoBehaviour
         //라운드 텍스트가 사라질때까지 기다린다(3초)
         yield return new WaitForSeconds(3f);
         //Enemy 스폰 시작
-        StartCoroutine(enemySpowner.GetComponent<EnemySpowner>().SpownEnemyWithRound(nowRound));
+        yield return StartCoroutine(enemySpowner.GetComponent<EnemySpowner>().SpownEnemyWithRound(nowRound));
 
         //모든 적이 죽을 때까지 기다리고, 전부 죽었다면 다음라운드까지 대기시간을 적용하고, 라운드를 넘긴다
         while (true)
@@ -120,7 +129,7 @@ public class GameManager : MonoBehaviour
                 //라운드 텍스트가 사라질때까지 기다린다(3초)
                 yield return new WaitForSeconds(3f);
 
-                StartCoroutine(enemySpowner.GetComponent<EnemySpowner>().SpownEnemyWithRound(nowRound));
+                yield return StartCoroutine(enemySpowner.GetComponent<EnemySpowner>().SpownEnemyWithRound(nowRound));
             }
             
             yield return null;
@@ -142,6 +151,8 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.button_ONObjectShop.gameObject.SetActive(true);
         UIManager.Instance.button_OFFObjectShop.gameObject.SetActive(false);
         UIManager.Instance.panel_ObjectShop.gameObject.SetActive(false);
+        //플랫폼을 설치하지 못하게 한다
+        StartCoroutine(mouseCursor.State_Idle());
     }
     private void roundEnd() {
         //정비 시간 텍스트를 띄운다
@@ -151,7 +162,7 @@ public class GameManager : MonoBehaviour
         gameState = GameState.ROUNDNOTPLAYING;
         UIManager.Instance.button_ONObjectShop.interactable = true;
         UIManager.Instance.button_ONObjectShop.gameObject.SetActive(true);
-        player.setFalseInstallMode();
+        
     }
     
     public void GamePause()
@@ -175,16 +186,18 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         nowRound = 0;
         nowDeadEnemyCount = 0;
-        gameState = GameState.ROUNDNOTPLAYING;
         Gold = goldStartValue;
+        gameState = GameState.ROUNDNOTPLAYING;
+
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+
+        UIManager.Instance.button_Play_GameStart.gameObject.SetActive(true);
         UIManager.Instance.button_ONObjectShop.interactable = true;
         UIManager.Instance.button_ONObjectShop.gameObject.SetActive(true);
+        UIManager.Instance.panel_GameOver.SetActive(false);
         if (canPausePanelActive == false)
             GamePause();
-        UIManager.Instance.panel_GameOver.SetActive(false);
-        //정비 시간 텍스트를 띄운다
-        StartCoroutine(UIManager.Instance.TargetTextFadeOutWithTime(UIManager.Instance.text_RoundNotify,
-           "정비 시간", 1.5f, 1));
+        
     }
 
     void loadSaveData()

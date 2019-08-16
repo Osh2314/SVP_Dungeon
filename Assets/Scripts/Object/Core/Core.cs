@@ -13,12 +13,14 @@ public class Core : MonoBehaviour
         }
         set
         {
-            /*if(hp<value){
-	   StartCoroutine(Camera.main.GetComponent<CameraShake>().cameraVibration(3f));
-	   Debug.Log("코어 피격에 의한 카메라 진동");
-	}*/
+            if (hp > value)
+            {
+                StartCoroutine(Camera.main.GetComponent<CameraShake>().CameraVibration(((float)35 / (hp * 2 + 1)) + 0.2f, (10 / (hp/3))+2f, 3f));
+                Debug.Log("코어 피격에 의한 카메라 진동");
+            }
+            hp = value;
             UIManager.Instance.slider_CoreHp.value = hp;
-            if (Hp <= 0)
+            if (hp <= 0)
             {
                 event_Death();
             }
@@ -28,7 +30,10 @@ public class Core : MonoBehaviour
 
     [SerializeField]
     private int hp = 10;
-
+    private void Awake()
+    {
+        GameManager.Instance.core = this;
+    }
     void Start()
     {
         UIManager.Instance.slider_CoreHp.maxValue = hp;
@@ -54,6 +59,8 @@ public class Core : MonoBehaviour
 
     private void event_Death()
     {
-        Destroy(gameObject);
+        UIManager.Instance.panel_GameOver.SetActive(true);
+        Time.timeScale = 0;
+        //여기에 코어 파괴 애니메이션 StartCoroutine(STATE_DEAD());
     }
 }

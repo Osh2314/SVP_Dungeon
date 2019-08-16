@@ -17,6 +17,10 @@ public class EnemySpowner : MonoBehaviour
     [Header("1차원인덱스:원하는 라운드 2차원인덱스:원하는 적들")]
     public Round[] roundEnemyInfo;
 
+    private void Awake()
+    {
+        GameManager.Instance.enemySpowner = this;
+    }
     /// <summary>
     /// 인자로 받은 라운드값에 따라 적을 스폰하는 역할의 함수이다.
     /// </summary>
