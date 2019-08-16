@@ -181,6 +181,7 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.button_ONObjectShop.gameObject.SetActive(true);
         if (canPausePanelActive == false)
             GamePause();
+        UIManager.Instance.panel_GameOver.SetActive(false);
         //정비 시간 텍스트를 띄운다
         StartCoroutine(UIManager.Instance.TargetTextFadeOutWithTime(UIManager.Instance.text_RoundNotify,
            "정비 시간", 1.5f, 1));

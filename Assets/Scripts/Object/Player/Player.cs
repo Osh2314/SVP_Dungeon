@@ -20,10 +20,10 @@ public class Player : MonoBehaviour
         }
         set
         {
-	if(hp<value){
+	/*if(hp<value){
 	   StartCoroutine(Camera.main.GetComponent<CameraShake>().cameraVibration(3f));
 	   Debug.Log("플레이어에 피격에 의한 카메라 진동");
-	}
+	}*/
 
             hp = value;
             UIManager.Instance.slider_PlayerHp.value = hp;
@@ -153,6 +153,22 @@ public class Player : MonoBehaviour
         yield break;
     }
 
+    IEnumerator STATE_DEAD(){
+ state = STATE.MOVE;
+        //ThisAnimator.SetTrigger((int)State.DEAD);
+
+        while (state == STATE.DEAD)
+        {
+            //플레이어
+            if (GameManager.Instance.gameState == GameManager.GameState.ROUNDPLAYING)
+            {
+            }
+            //   Debug.Log(Time.realtimeSinceStartup + " || " + "현재 DEAD상태");
+            yield return null;
+        }
+        yield break;
+    }
+
     public void setTrueInstallMode(GameObject objInfo) {
         isInstallMode = true;
         mouseFollowObj = Instantiate(objInfo, new Vector3(), Quaternion.identity);
@@ -185,12 +201,12 @@ public class Player : MonoBehaviour
     {
         UIManager.Instance.panel_GameOver.SetActive(true);
         Time.timeScale = 0;
-        Destroy(gameObject);
-
+        StartCoroutine(STATE_DEAD());
     }
 
     public void Respown() {
         transform.position = spownPos;
         Hp = maxHp;
+        rigid.velocity=new Vector3(0, 0, 0);
     }
 }
