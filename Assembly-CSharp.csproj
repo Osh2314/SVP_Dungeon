@@ -91,6 +91,7 @@
     <Compile Include="Assets\Scripts\Object\Tower\Tower_Fire.cs" />
     <Compile Include="Assets\Scripts\Object\Tower\Tower_Ice.cs" />
     <Compile Include="Assets\Scripts\Object\Tower\Tower_Range.cs" />
+    <Compile Include="Assets\Scripts\Object\Trap\Trap_BigThornFloor.cs" />
     <Compile Include="Assets\Scripts\Object\Trap\Trap_FootHold.cs" />
     <Compile Include="Assets\Scripts\Object\Trap\Trap_Thorn.cs" />
     <Compile Include="Assets\Scripts\Test.cs" />
