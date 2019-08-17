@@ -69,6 +69,8 @@
     <Compile Include="Assets\Scripts\Object\Enemy\Assassin\Enemy_Assassin.cs" />
     <Compile Include="Assets\Scripts\Object\Enemy\Assassin\Enemy_Assassin_Knife.cs" />
     <Compile Include="Assets\Scripts\Object\Enemy\Assassin\Enemy_Assassin_Knife_Cut.cs" />
+    <Compile Include="Assets\Scripts\Object\Enemy\Caster\Enemy_Caster.cs" />
+    <Compile Include="Assets\Scripts\Object\Enemy\Caster\Enemy_Caster_Blessing.cs" />
     <Compile Include="Assets\Scripts\Object\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\Object\Enemy\Enemy_AttackObject.cs" />
     <Compile Include="Assets\Scripts\Object\Enemy\Enemy_Sword.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="Assets\Scripts\Object\Enemy\EnemySpowner.cs" />
     <Compile Include="Assets\Scripts\Object\Enemy\Range\AssassinRange.cs" />
     <Compile Include="Assets\Scripts\Object\Enemy\Range\AssassinRange2.cs" />
+    <Compile Include="Assets\Scripts\Object\Enemy\Range\CasterRange.cs" />
     <Compile Include="Assets\Scripts\Object\Enemy\Range\EnemyRange.cs" />
     <Compile Include="Assets\Scripts\Object\Player\Cursor.cs" />
     <Compile Include="Assets\Scripts\Object\Player\InstallObj_Rendering.cs" />
