@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
 
     public void MainPanel_GameStartBtn() {
 
-        SceneManager.LoadScene("01_GamePlaying", LoadSceneMode.Single);
+        //SceneManager.LoadScene("01_GamePlaying", LoadSceneMode.Single); //씬 이동하는 구문
         GameReset();
         loadSaveData();
     }

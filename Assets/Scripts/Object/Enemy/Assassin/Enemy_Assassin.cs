@@ -10,7 +10,7 @@ public class Enemy_Assassin : Enemy
     public float knifespeed;
     public float cutspeed;
 
-    private bool isThrowing = false;
+    private bool isThrowing = true;
     public int atkpoint = 1;
 
     // Start is called before the first frame update
@@ -72,6 +72,12 @@ public class Enemy_Assassin : Enemy
         atkpoint--;
         yield break;
     }
+
+public void GetIsThrowing(bool iT)
+{
+        isThrowing = iT;
+}
+
 }
 
 //state = State.ATTACK;

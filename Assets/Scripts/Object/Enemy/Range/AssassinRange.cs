@@ -25,11 +25,11 @@ public class AssassinRange : MonoBehaviour
         {
             if(enemy.gameObject.transform.position.x >= collision.transform.position.x)
             {
-            enemy.gameObject.transform.position = new Vector3(collision.transform.position.x  - 1, gameObject.transform.position.y, gameObject.transform.position.z);
+            enemy.gameObject.transform.position = new Vector3(collision.transform.position.x  - 1, collision.gameObject.transform.position.y, gameObject.transform.position.z);
             }
             else
             {
-                enemy.gameObject.transform.position = new Vector3(collision.transform.position.x + 1, gameObject.transform.position.y, gameObject.transform.position.z);
+                enemy.gameObject.transform.position = new Vector3(collision.transform.position.x + 1, collision.gameObject.transform.position.y, gameObject.transform.position.z);
             }
 
         }
