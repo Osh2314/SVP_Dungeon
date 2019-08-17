@@ -32,7 +32,7 @@ public class Enemy_Archer : Enemy
         {
             if (atkpoint >= 2)
             {
-                Debug.Log("삭제");
+                //Debug.Log("삭제");
                 atkpoint--;
                 yield break;
             }

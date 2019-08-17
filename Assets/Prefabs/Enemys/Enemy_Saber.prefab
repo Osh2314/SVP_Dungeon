@@ -118,6 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a19490c949084044a8bb40f7c6d479ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Fire: {fileID: 8960283117156854719, guid: 62a6a354924acd04fa0dd58357bf1b51, type: 3}
   speed: 3
   spinforce: 10000
   dropGoldValue: 10

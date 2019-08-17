@@ -24,7 +24,7 @@ public class CasterRange : MonoBehaviour
         //   Debug.Log(collision.gameObject.name + "발견");
         if (enemy.state == global::Enemy.State.MOVE || enemy.state == global::Enemy.State.ATTACK)
         {
-            if (collision.gameObject.tag == "Enemy")
+            if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Player")
             {
                 enemy.StartCoroutine(enemy.State_Attack());
             }
@@ -35,7 +35,7 @@ public class CasterRange : MonoBehaviour
     {
         Enemy enemy2 = collision.gameObject.GetComponent<Enemy>();
         // Debug.Log("Exit");
-        if ((collision.gameObject.tag == "Enemy" && enemy.state == global::Enemy.State.ATTACK))
+        if ((collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Player") && enemy.state == global::Enemy.State.ATTACK)
         {
             enemy.StartCoroutine(enemy.State_Move());
         }

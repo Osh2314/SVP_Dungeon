@@ -4,14 +4,18 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
+    public GameObject Fire;
     public float speed;
     public float spinforce = 10000;
     public int dropGoldValue = 10;
     public enum State { IDLE, MOVE, STUN, ATTACK, DEAD};
     public State state = State.IDLE;
 
+    GameObject createObject;
     protected Rigidbody2D rigid;
     protected Vector3 playerPos;
+
+    private int burncount = 0;
     // Start is called before the first frame update
     protected void Start()
     {
@@ -22,7 +26,6 @@ public abstract class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
         
     }
 
@@ -66,6 +69,49 @@ public abstract class Enemy : MonoBehaviour
          //   Debug.Log(Time.realtimeSinceStartup + " || " + "현재 MOVE상태");
             yield return null;
         }
+        yield break;
+    }
+
+    public IEnumerator State_Stun(float second)
+    {
+        state = State.STUN;
+        while(second > 0)
+        {
+            yield return new WaitForSeconds(1f);
+            second--;
+        }
+        StartCoroutine(State_Move());
+        yield break;
+    }
+
+    public IEnumerator Slow(float second)
+    {
+        float originalSpeed = speed;
+        speed = speed * 0.5f;
+        yield return new WaitForSeconds(second);
+        speed = originalSpeed;
+        yield break;
+    }
+
+    public IEnumerator Burn(int amount)
+    {
+        burncount++;
+        if(burncount>=2)
+        {
+            burncount--;
+            yield break;
+        }
+        createObject = Instantiate(Fire, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity,transform);
+        while (amount > 0)
+        {
+            //Debug.Log(gameObject.name + "불타는중");
+            EnemyHealth enemyHealth = gameObject.GetComponent<EnemyHealth>();
+            enemyHealth.Hp -= 3;
+            amount--;
+            yield return new WaitForSeconds(1f);
+        }
+        burncount--;
+        Destroy(createObject);
         yield break;
     }
 

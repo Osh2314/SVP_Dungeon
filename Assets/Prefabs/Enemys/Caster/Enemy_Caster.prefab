@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: 8839664516446009534}
   - component: {fileID: 8839664516446009535}
   - component: {fileID: 8839664516446009520}
+  - component: {fileID: 304989363072077735}
   - component: {fileID: 8839664516446009522}
   - component: {fileID: 1386851174}
   m_Layer: 8
@@ -214,6 +215,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &304989363072077735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8839664516446009523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75d7eb27ecf0d1c4082af2ecc40f6619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 30
 --- !u!114 &8839664516446009522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,7 +240,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2efa0f4312f033041ab48991f7b830d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  Fire: {fileID: 8960283117156854719, guid: 62a6a354924acd04fa0dd58357bf1b51, type: 3}
+  speed: 3
   spinforce: 10000
   dropGoldValue: 10
   state: 0

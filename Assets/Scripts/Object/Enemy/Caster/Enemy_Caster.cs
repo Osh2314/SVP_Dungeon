@@ -27,7 +27,7 @@ public class Enemy_Caster : Enemy
         {
             if (point >= 2)
             {
-                Debug.Log("삭제");
+               // Debug.Log("삭제");
                 point--;
                 yield break;
             }

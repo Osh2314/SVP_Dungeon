@@ -86,6 +86,11 @@
     <Compile Include="Assets\Scripts\Object\Player\Player_AttackObject.cs" />
     <Compile Include="Assets\Scripts\Object\Player\PlayerAbility_Ghost.cs" />
     <Compile Include="Assets\Scripts\Object\Player\PlayerSkill1.cs" />
+    <Compile Include="Assets\Scripts\Object\Tower\Tower.cs" />
+    <Compile Include="Assets\Scripts\Object\Tower\Tower_Electric.cs" />
+    <Compile Include="Assets\Scripts\Object\Tower\Tower_Fire.cs" />
+    <Compile Include="Assets\Scripts\Object\Tower\Tower_Ice.cs" />
+    <Compile Include="Assets\Scripts\Object\Tower\Tower_Range.cs" />
     <Compile Include="Assets\Scripts\Object\Trap\Trap_FootHold.cs" />
     <Compile Include="Assets\Scripts\Object\Trap\Trap_Thorn.cs" />
     <Compile Include="Assets\Scripts\Test.cs" />
