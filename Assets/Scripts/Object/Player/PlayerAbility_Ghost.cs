@@ -27,10 +27,7 @@ public class PlayerAbility_Ghost : MonoBehaviour
         Vector3 mouseConvertedpoint = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
 
         Vector2 lookDir = mouseConvertedpoint - sword.transform.position;
-        //Debug.Log(mouseConvertedpoint);
-        lookDir.Normalize();
-        sword.transform.rotation = Quaternion.FromToRotation(Vector3.up, lookDir);
-
+ 
         if (Input.GetKeyDown(KeyCode.Mouse0)&&canAttack==true)
         {
             StartCoroutine(AttackCoolTimeTimerStart());

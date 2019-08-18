@@ -66,7 +66,10 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
-        if (GameObject.FindGameObjectWithTag("Player") == null)
+        if (SceneManager.GetActiveScene().name == "00_MainScreen") {
+            return;
+        }
+            if (GameObject.FindGameObjectWithTag("Player") == null)
             player = Instantiate(playerPrefab, playerSpownPos, Quaternion.identity).GetComponent<Player>();
         else
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -85,9 +88,29 @@ public class GameManager : MonoBehaviour
     }
 
     public void MainPanel_GameStartBtn() {
+        StartCoroutine(LoadScene());
+        
+    }
 
-        //SceneManager.LoadScene("01_GamePlaying", LoadSceneMode.Single); //씬 이동하는 구문
-        GameReset();
+    IEnumerator LoadScene()
+    {
+        AsyncOperation op = SceneManager.LoadSceneAsync("01_GamePlaying");
+        op.allowSceneActivation = false;
+
+        while (!op.isDone)
+        {
+            
+            if (op.progress >= 0.9f)
+            {
+
+                op.allowSceneActivation = true;
+            }
+            yield return null;
+        }
+
+        thisDataReset();
+        StartCoroutine(UIManager.Instance.TargetTextFadeOutWithTime(UIManager.Instance.text_RoundNotify,
+           "정비 시간", 1.5f, 1));
         loadSaveData();
     }
     public void PlayPanel_GameStartBtn() {
@@ -183,12 +206,8 @@ public class GameManager : MonoBehaviour
 
     public void GameReset() {
         player.Respown();
-        Time.timeScale = 1;
-        nowRound = 0;
-        nowDeadEnemyCount = 0;
-        Gold = goldStartValue;
-        gameState = GameState.ROUNDNOTPLAYING;
 
+        StartCoroutine(LoadScene());
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
 
         UIManager.Instance.button_Play_GameStart.gameObject.SetActive(true);
@@ -200,6 +219,15 @@ public class GameManager : MonoBehaviour
         
     }
 
+    void thisDataReset() {
+        Time.timeScale = 1;
+        nowRound = 0;
+        nowDeadEnemyCount = 0;
+        Gold = goldStartValue;
+        gameState = GameState.ROUNDNOTPLAYING;
+
+
+    }
     void loadSaveData()
     {
         //nowSaveFileSelectNum
