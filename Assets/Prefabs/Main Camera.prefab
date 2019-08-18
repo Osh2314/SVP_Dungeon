@@ -110,3 +110,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   lerpConstant: 0.7
+  min_x: -10
+  max_x: 10

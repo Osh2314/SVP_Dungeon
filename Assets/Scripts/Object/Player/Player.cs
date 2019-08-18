@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     public float speed;
     public float origin_JumpForce;
     public bool cJump = true;
-
+    public GameObject hand;
     public enum STATE { IDLE, MOVE, STOP, ATTACK, DEAD };
     public STATE state = STATE.IDLE;
 
@@ -62,18 +62,24 @@ public class Player : MonoBehaviour
 
         transform.position += new Vector3(h * speed * Time.deltaTime, 0, 0);
 
+        Vector3 mouseConvertedpoint = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
+
+        Vector2 lookDir = mouseConvertedpoint - hand.transform.position;
+        lookDir.Normalize();
+        hand.transform.rotation = Quaternion.FromToRotation(Vector3.up, lookDir);
+        hand.transform.localEulerAngles += new Vector3(0, 0, -90);
 
         if (Input.GetKeyDown(KeyCode.Space) && cJump == true)
         {
             rigid.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             cJump = false;
         }
-        if (h > 0) // 1이 오른쪽 -1이 왼쪽
+        if (transform.position.x<GameManager.Instance.mouseCursor.transform.position.x) // 1이 오른쪽 -1이 왼쪽
         {
             isSeeRight = true;
             transform.localEulerAngles = new Vector3(0, 180, 0);
         }
-        if (h < 0)
+        if (transform.position.x > GameManager.Instance.mouseCursor.transform.position.x)
         {
             isSeeRight = false;
             transform.localEulerAngles = new Vector3(0, 0, 0);
