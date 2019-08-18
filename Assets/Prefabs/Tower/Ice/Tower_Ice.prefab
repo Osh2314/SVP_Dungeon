@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 869426463}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.95, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 7.9087496, y: 0.5405406, z: 1}
   m_Children: []
   m_Father: {fileID: 2142718020565244101}
@@ -181,9 +181,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de2ab38a503fa06419a2a707e3f14afa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Attack: {fileID: 0}
+  Attack: {fileID: 4626985437452342246, guid: 6a27427735d4cc54c91a5c842c2e5db1, type: 3}
   state: 0
   atkspeed: 500
+  cooldown: 2
 --- !u!50 &7568866553075827937
 Rigidbody2D:
   serializedVersion: 4

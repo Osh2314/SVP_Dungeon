@@ -106,7 +106,7 @@ public abstract class Enemy : MonoBehaviour
         {
             //Debug.Log(gameObject.name + "불타는중");
             EnemyHealth enemyHealth = gameObject.GetComponent<EnemyHealth>();
-            enemyHealth.Hp -= 3;
+            enemyHealth.Hp -= 5;
             amount--;
             yield return new WaitForSeconds(1f);
         }

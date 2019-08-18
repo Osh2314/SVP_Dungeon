@@ -215,7 +215,7 @@ MonoBehaviour:
   state: 0
   Knife: {fileID: 8936827094054866678, guid: 05d00a191ee65734c84f9f92c54ef522, type: 3}
   Cut: {fileID: 8967367385279062361, guid: d6ac0ae550cf33d43856cdf425664104, type: 3}
-  knifespeed: 1500
+  knifespeed: 700
   cutspeed: 3
   atkpoint: 0
 --- !u!50 &1463035112390889614

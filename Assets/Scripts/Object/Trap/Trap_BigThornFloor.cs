@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Trap_BigThornFloor : MonoBehaviour
 {
-    GameObject Thron1;
-    GameObject Thron2;
-    GameObject Thron3;
+    public GameObject Thron1;
+    public GameObject Thron2;
+    public GameObject Thron3;
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(Thorn());
     }
 
     // Update is called once per frame
@@ -21,16 +21,23 @@ public class Trap_BigThornFloor : MonoBehaviour
 
     public IEnumerator Thorn()
     {
-        while(true)
+        while (true)
         {
-            Thron1.gameObject.SetActive(false);
-            Thron2.gameObject.SetActive(false);
-            Thron3.gameObject.SetActive(false);
-            yield return new WaitForSeconds(3f);
-            Thron1.gameObject.SetActive(true);
-            Thron2.gameObject.SetActive(true);
-            Thron3.gameObject.SetActive(true);
-            yield return new WaitForSeconds(3f);
+            if (GameManager.Instance.gameState == GameManager.GameState.ROUNDPLAYING)
+            {
+                Thron1.gameObject.SetActive(false);
+                Thron2.gameObject.SetActive(false);
+                Thron3.gameObject.SetActive(false);
+                yield return new WaitForSeconds(3f);
+                Thron1.gameObject.SetActive(true);
+                Thron2.gameObject.SetActive(true);
+                Thron3.gameObject.SetActive(true);
+                yield return new WaitForSeconds(3f);
+            }
+            else
+            {
+                yield return new WaitForSeconds(2f);
+            }
         }
     }
 }

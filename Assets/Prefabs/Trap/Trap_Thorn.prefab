@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6382392592199675376}
   - component: {fileID: 3118510476442223395}
   m_Layer: 0
-  m_Name: Trap
+  m_Name: Trap_Thorn
   m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -122,4 +122,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71275305f501df84d8cece11e5d7e30e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  second: 3
   damage: 10
